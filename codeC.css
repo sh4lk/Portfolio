@@ -1,3 +1,6 @@
+section {
+  min-height: 35vh;
+}
 html {
   scroll-padding-top: 100px;
   scroll-behavior: smooth;
@@ -85,38 +88,6 @@ main {
     padding: 200px;
  }
 
-/*---------------------------Block skills---------------------------*/
-
-.block_skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
-}
-
-/* Block des projets */
-.Comptence {
-  flex: 1 1 340px;
-  min-width: 320px;
-  max-width: 480px;
-  background-color: rgba(18, 18, 18, 0.527);
-}
-
-/* Block des outils */
-.testpos li{
-    padding: 0px 20px;
-    background-color: rgba(18, 18, 18, 0);
-    text-decoration: none;
-    display: inline-block;
-    list-style: none;
-    width: fit-content;
-    border: 1px solid #00F0FF;
-    border-radius: 10px;
-    transition:all 0.2s
-} 
-.testpos li:hover {
-    transform: scale(1.1);
-}
 h2, h3{
     color: #00F0FF;
 }
@@ -196,3 +167,53 @@ body, html {
 .projet:hover{
     border: 2px solid #00F0FF;
 }
+
+/* Block des outils */
+.projet li{
+    padding: 0px 5px;
+    background-color: #23242d;
+    text-decoration: none;
+    display: inline-block;
+    list-style: none;
+    width: fit-content;
+    border: 1px solid #00F0FF;
+    border-radius: 10px;
+    transition:all 0.2s
+} 
+.projet li:hover {
+    transform: scale(1.1);
+}
+
+/*Bloc de contacts*/
+.contacts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin: 30px 0;
+}
+#contact h1{
+    text-align: center;
+}
+.block_contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #181818;
+  border-radius: 10px;
+  padding: 18px 34px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.18em;
+  font-weight: 500;
+  min-width: 120px;
+  min-height: 90px;
+  box-shadow: 0 3px 8px #0004;
+}
+.block_contact svg {
+  margin-bottom: 8px;
+}
+.block_contact:hover{
+    border: 1px solid #00F0FF;
+}
+
