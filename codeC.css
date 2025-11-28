@@ -1,36 +1,45 @@
-/* --- 1. Variables & Thèmes --- */
+/* =========================================
+   1. VARIABLES & THÈMES
+   ========================================= */
 :root {
-  /* Thème Principal (Clair / Futuriste Glacial) */
-  --bg-body: #F0F5F9;          /* Gris/Bleu très clair */
-  --bg-card: #FFFFFF;          /* Blanc pur */
-  --bg-nav: rgba(240, 245, 249, 0.95);
-  --text-main: #181818;        /* Anthracite */
-  --text-secondary: #546e7a;   /* Gris bleuté */
-  --accent-color: #00bcd4;     /* Cyan pour le thème clair */
-  --border-color: #cfd8dc;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* --- THÈME CLAIR (Par défaut - Futuriste Glacial) --- */
+  --bg-body: #F0F5F9;           /* Gris/Bleu très pâle */
+  --bg-card: #FFFFFF;           /* Blanc pur */
+  --bg-nav: rgba(240, 245, 249, 0.90); /* Semi-transparent */
+  --text-main: #181818;         /* Anthracite */
+  --text-secondary: #546e7a;    /* Gris bleuté */
+  --accent-color: #00bcd4;      /* Cyan Électrique */
+  --border-color: #cfd8dc;      /* Gris clair */
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
   
-  /* Dimensions & Spacing */
+  /* --- DIMENSIONS --- */
   --nav-height: 70px;
   --border-radius: 12px;
+  --container-width: 1100px;
 }
 
-/* Thème Sombre (Activé via JS) */
+/* --- THÈME SOMBRE (Activé via JS) --- */
 body.dark-mode {
-  --bg-body: #050505;          /* Noir profond */
-  --bg-card: #121212;          /* Gris très sombre */
-  --bg-nav: rgba(18, 18, 18, 0.95);
-  --text-main: #ffffff;
-  --text-secondary: #b0bec5;
-  --accent-color: #D500F9;     /* VIOLET NÉON (Choix IA) */
-  --border-color: #333333;
-  --shadow: 0 4px 20px rgba(213, 0, 249, 0.15); /* Lueur violette */
+  --bg-body: #050505;           /* Noir Profond */
+  --bg-card: #121212;           /* Gris anthracite très sombre */
+  --bg-nav: rgba(5, 5, 5, 0.90);
+  --text-main: #ffffff;         /* Blanc */
+  --text-secondary: #b0bec5;    /* Gris clair */
+  --accent-color: #D500F9;      /* VIOLET NÉON (Cyberpunk) */
+  --border-color: #333333;      /* Gris foncé */
+  --shadow: 0 10px 40px -10px rgba(213, 0, 249, 0.15); /* Lueur violette */
 }
 
-/* --- 2. Reset & Base --- */
+/* =========================================
+   2. RESET & BASE
+   ========================================= */
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height);
+  scroll-padding-top: calc(var(--nav-height) + 20px);
 }
 
 body {
@@ -40,13 +49,17 @@ body {
   margin: 0;
   padding-top: var(--nav-height);
   transition: background-color 0.3s ease, color 0.3s ease;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Empêche le scroll horizontal indésirable */
+  line-height: 1.6;
 }
 
 ul { list-style: none; padding: 0; margin: 0; }
 a { text-decoration: none; color: inherit; transition: 0.2s; }
+button { font-family: inherit; }
 
-/* --- 3. Navigation --- */
+/* =========================================
+   3. NAVIGATION
+   ========================================= */
 nav {
   position: fixed;
   top: 0;
@@ -55,60 +68,69 @@ nav {
   background-color: var(--bg-nav);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px); /* Effet verre dépoli */
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 20px;
   height: 100%;
 }
 
+/* Pseudo / Logo */
 #pseudo {
-  font-family: monospace;
-  font-size: 1.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.4rem;
   color: var(--accent-color);
   font-weight: bold;
+  letter-spacing: -1px;
 }
 
+/* Liens Desktop */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .nav-links a {
+  font-size: 0.95rem;
   font-weight: 500;
   padding: 8px 16px;
   border-radius: var(--border-radius);
+  color: var(--text-main);
 }
 
 .nav-links a:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-  box-shadow: 0 0 15px var(--accent-color);
+  color: var(--accent-color);
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
-/* Bouton Thème */
+/* Bouton Thème (Lune/Soleil) */
 #theme-toggle {
-  background: none;
+  background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-main);
   cursor: pointer;
-  padding: 8px 12px;
+  width: 40px; height: 40px;
   border-radius: 50%;
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.3s;
+  margin-left: 15px;
 }
 
 #theme-toggle:hover {
   border-color: var(--accent-color);
   color: var(--accent-color);
   transform: rotate(15deg);
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 /* Menu Burger (Caché sur Desktop) */
@@ -119,29 +141,35 @@ nav {
   color: var(--text-main);
   font-size: 1.5rem;
   cursor: pointer;
+  padding: 5px;
 }
 
-/* --- 4. Barre de Progression --- */
+/* =========================================
+   4. BARRE DE PROGRESSION
+   ========================================= */
 #progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 0%;
-  height: 4px;
+  height: 3px;
   background: var(--accent-color);
   z-index: 1001;
   box-shadow: 0 0 10px var(--accent-color);
+  transition: width 0.1s;
 }
 
-/* --- 5. Header & Main --- */
+/* =========================================
+   5. HEADER (ACCUEIL)
+   ========================================= */
 .container {
-  max-width: 1000px;
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 20px;
 }
 
 header {
-  min-height: 80vh;
+  min-height: 85vh; /* Prend presque tout l'écran */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,197 +178,306 @@ header {
 }
 
 header h1 {
-  font-size: 4rem; /* Unité relative */
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  /* --- LE TEXTE MASSIF (Responsive) --- */
+  font-size: clamp(3.5rem, 13vw, 9rem); 
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin: 0 0 20px 0;
+  color: var(--text-main);
 }
 
+header .subtitle {
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin: 0;
+  max-width: 800px;
+}
+
+/* Mot en couleur (cybersécurité) */
 .highlight {
   color: var(--accent-color);
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(var(--accent-color), 0.3);
 }
 
+/* =========================================
+   6. SECTIONS GÉNÉRALES
+   ========================================= */
 section {
-  padding: 80px 0;
-  min-height: auto;
+  padding: 100px 0;
 }
 
 h2 {
-  font-size: 2.5rem;
-  border-left: 5px solid var(--accent-color);
-  padding-left: 15px;
+  font-size: 2rem;
   margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  color: var(--text-main);
 }
 
-/* --- 6. Cartes & Compétences --- */
-.card, .projet-card, .contact-card {
+h2::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 30px;
+  background-color: var(--accent-color);
+  margin-right: 15px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Carte simple (À propos) */
+.card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: 2rem;
+  padding: 30px;
   box-shadow: var(--shadow);
-  transition: transform 0.2s, border-color 0.2s;
+  font-size: 1.1rem;
+}
+
+/* =========================================
+   7. COMPÉTENCES (SKILLS)
+   ========================================= */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .skills-list li {
-  display: inline-block;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 20px;
+  color: var(--text-main);
+  padding: 12px 24px;
+  border-radius: 50px; /* Forme de pilule */
   font-weight: 500;
-  transition: 0.2s;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
 .skills-list li:hover {
   border-color: var(--accent-color);
   color: var(--accent-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* --- 7. Slider Projets --- */
+/* =========================================
+   8. PROJETS (SLIDER)
+   ========================================= */
 .slider-container {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+  position: relative;
 }
 
 .exp-slider {
   overflow-x: auto;
   scroll-behavior: smooth;
+  padding: 20px 5px; /* Espace pour l'ombre */
   scrollbar-width: none; /* Firefox */
-  padding: 10px 0;
+  width: 100%;
 }
-.exp-slider::-webkit-scrollbar { display: none; }
+.exp-slider::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 .exp-grid {
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
 .projet-card {
-  flex: 0 0 300px; /* Largeur fixe relative */
+  flex: 0 0 320px; /* Largeur fixe des cartes */
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 25px;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, border-color 0.3s;
 }
 
 .projet-card:hover {
-  border-color: var(--accent-color);
   transform: translateY(-5px);
+  border-color: var(--accent-color);
 }
 
 .projet-card h3 {
+  margin: 0 0 5px 0;
   color: var(--accent-color);
-  margin-top: 0;
+  font-size: 1.4rem;
 }
 
 .projet-card .date {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  margin-bottom: 10px;
-  font-style: italic;
+  font-family: monospace;
+  margin-bottom: 15px;
 }
 
+.projet-card p {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  flex-grow: 1; /* Pousse les tags vers le bas */
+}
+
+/* Tags dans les projets */
 .projet-card .tags {
-  margin-top: auto;
-  padding-top: 15px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
 .projet-card .tags span {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-family: monospace;
   padding: 4px 8px;
-  background: rgba(128, 128, 128, 0.1);
+  background: rgba(128, 128, 128, 0.1); /* Gris transparent */
+  color: var(--text-secondary);
   border-radius: 4px;
+  border: 1px solid transparent;
 }
 
+/* Flèches du slider */
 .exp-arrow {
   background: var(--bg-card);
-  border: 2px solid var(--accent-color);
-  color: var(--accent-color);
-  width: 40px; height: 40px;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  width: 45px; height: 45px;
   border-radius: 50%;
-  cursor: pointer;
-  flex-shrink: 0;
   font-size: 1.2rem;
-}
-.exp-arrow:hover {
-  background: var(--accent-color);
-  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
 }
 
-/* --- 8. Contact --- */
+.exp-arrow:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(128, 128, 128, 0.05);
+}
+
+/* =========================================
+   9. CONTACT & FOOTER
+   ========================================= */
 .contacts-grid {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .contact-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 140px;
-  gap: 10px;
-  font-size: 1.2rem;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  min-width: 160px;
+  gap: 15px;
+  transition: 0.3s;
 }
 
-.contact-card i {
-  font-size: 2rem;
-  color: var(--accent-color);
+.contact-card i, .contact-card svg {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  transition: 0.3s;
+}
+
+.contact-card span {
+  font-weight: 500;
 }
 
 .contact-card:hover {
   border-color: var(--accent-color);
-  background-color: rgba(0, 188, 212, 0.05); /* Légère teinte au survol */
+  transform: translateY(-5px);
+}
+
+.contact-card:hover i, .contact-card:hover svg {
+  color: var(--accent-color);
+  text-shadow: 0 0 15px var(--accent-color);
 }
 
 footer {
+  margin-top: 50px;
+  padding: 40px 20px;
   text-align: center;
-  padding: 50px 0;
+  border-top: 1px solid var(--border-color);
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
-/* --- 9. Responsive (Mobile) --- */
+/* =========================================
+   10. RESPONSIVE (MOBILE)
+   ========================================= */
 @media (max-width: 768px) {
-  header h1 { font-size: 2.5rem; }
   
-  .menu-toggle { display: block; }
+  /* Navigation Mobile */
+  .menu-toggle {
+    display: block; /* Affiche le burger */
+  }
 
   .nav-links {
     position: fixed;
     top: var(--nav-height);
-    right: -100%; /* Caché par défaut */
+    right: -100%; /* Caché hors écran */
     width: 100%;
     height: calc(100vh - var(--nav-height));
     background-color: var(--bg-nav);
+    backdrop-filter: blur(15px);
     flex-direction: column;
     justify-content: center;
-    gap: 40px;
-    transition: 0.3s ease-in-out;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     border-top: 1px solid var(--border-color);
   }
 
   .nav-links.active {
-    right: 0;
-  }
-  
-  .nav-links a {
-    font-size: 1.5rem;
+    right: 0; /* Menu ouvert */
   }
 
-  .slider-container {
-    position: relative;
+  .nav-links a {
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
   }
   
-  /* Cacher les flèches sur mobile (le swipe tactile suffit) */
-  .exp-arrow { display: none; }
+  /* Ajustement Slider sur Mobile */
+  .exp-arrow {
+    display: none; /* Cache les flèches, on swipe */
+  }
   
   .projet-card {
-    flex: 0 0 85vw; /* Carte prend presque tout l'écran */
+    flex: 0 0 85vw; /* La carte prend 85% de la largeur écran */
+  }
+
+  /* Contact empilé */
+  .contacts-grid {
+    gap: 15px;
+  }
+  
+  .contact-card {
+    width: 100%; /* Boutons pleine largeur */
+    flex-direction: row; /* Icône à gauche, texte à droite */
+    padding: 20px;
+  }
+  
+  .contact-card i {
+    font-size: 1.5rem;
   }
 }
