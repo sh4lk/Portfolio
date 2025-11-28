@@ -1,247 +1,346 @@
-section {
-  min-height: 35vh;
+/* --- 1. Variables & Thèmes --- */
+:root {
+  /* Thème Principal (Clair / Futuriste Glacial) */
+  --bg-body: #F0F5F9;          /* Gris/Bleu très clair */
+  --bg-card: #FFFFFF;          /* Blanc pur */
+  --bg-nav: rgba(240, 245, 249, 0.95);
+  --text-main: #181818;        /* Anthracite */
+  --text-secondary: #546e7a;   /* Gris bleuté */
+  --accent-color: #00bcd4;     /* Cyan pour le thème clair */
+  --border-color: #cfd8dc;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Dimensions & Spacing */
+  --nav-height: 70px;
+  --border-radius: 12px;
 }
+
+/* Thème Sombre (Activé via JS) */
+body.dark-mode {
+  --bg-body: #050505;          /* Noir profond */
+  --bg-card: #121212;          /* Gris très sombre */
+  --bg-nav: rgba(18, 18, 18, 0.95);
+  --text-main: #ffffff;
+  --text-secondary: #b0bec5;
+  --accent-color: #D500F9;     /* VIOLET NÉON (Choix IA) */
+  --border-color: #333333;
+  --shadow: 0 4px 20px rgba(213, 0, 249, 0.15); /* Lueur violette */
+}
+
+/* --- 2. Reset & Base --- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
 body {
   font-family: 'Roboto', Arial, sans-serif;
-  padding-top: 70px;
-  background-color:rgb(5, 5, 5);
-  color: white;
+  background-color: var(--bg-body);
+  color: var(--text-main);
   margin: 0;
+  padding-top: var(--nav-height);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
-html {
-  scroll-padding-top: 100px;
-  scroll-behavior: smooth;
-}
-nav{
+
+ul { list-style: none; padding: 0; margin: 0; }
+a { text-decoration: none; color: inherit; transition: 0.2s; }
+
+/* --- 3. Navigation --- */
+nav {
   position: fixed;
   top: 0;
   width: 100%;
+  height: var(--nav-height);
+  background-color: var(--bg-nav);
+  border-bottom: 1px solid var(--border-color);
   z-index: 1000;
+  backdrop-filter: blur(5px);
 }
 
-/*---------------------------Barre de navigation---------------------------*/
-
-nav ul{
-  list-style: none;
-  display:flex;
-  justify-content: right;
-  margin: 0;
-  padding: 30px;
-  background-color: rgba(18, 18, 18, 0.527);
-  background-attachment: fixed;
-  border: 2px solid #181818;
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
 }
 
-/* Catégories */
-nav li a{
-  color: #ffffff;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-  transition:all 0.1s
+#pseudo {
+  font-family: monospace;
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  font-weight: bold;
 }
 
-/* Effet des catégories */
-nav li a:hover {
-  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
-  color: #00F0FF;
-  transform: scale(1.1);
-  border-radius: 7px;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-/* Barre de progression */
+.nav-links a {
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+}
+
+.nav-links a:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Bouton Thème */
+#theme-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+#theme-toggle:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: rotate(15deg);
+}
+
+/* Menu Burger (Caché sur Desktop) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* --- 4. Barre de Progression --- */
 #progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 0%;
-  height: 5px;
-  background: linear-gradient(90deg, #00F0FF, #00a0d5);
-  z-index: 1000;
-  transition: width 0.2s;
+  height: 4px;
+  background: var(--accent-color);
+  z-index: 1001;
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* Pseudo */
-#pseudo {
-  margin-right: auto;
-  font-size: 22px;
-  color: #00F0FF;
-  font-family: monospace, 'Consolas', 'Courier New', sans-serif;
-  font-weight: bold;
-  padding-left: 10px;
-  border-radius: 9px;
+/* --- 5. Header & Main --- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
+
 header {
-  min-height: 75vh;
-  font-size: 230%;
-  transition:all 0.2s;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-top: 10%;
-}
-header h1:hover{
-  text-shadow:0 5px 20px #00F0FF;
-}
-main {
-  padding: 200px;
- }
-
-h1, h2 {
-  text-shadow:0 5px 20px #00F0FF;
-  font-family: sans-serif;
-  font-size: 250%;
-}
-footer{
-  text-align: center;
-  padding: 30px;
-}
-body, html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
-#skills li{
-  padding: 0px 10px;
-  background-color: #181818;
-  text-decoration: none;
+header h1 {
+  font-size: 4rem; /* Unité relative */
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.highlight {
+  color: var(--accent-color);
+}
+
+section {
+  padding: 80px 0;
+  min-height: auto;
+}
+
+h2 {
+  font-size: 2.5rem;
+  border-left: 5px solid var(--accent-color);
+  padding-left: 15px;
+  margin-bottom: 40px;
+}
+
+/* --- 6. Cartes & Compétences --- */
+.card, .projet-card, .contact-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.skills-list li {
   display: inline-block;
-  list-style: none;
-  width: fit-content;
-  border: 1px solid #23242d;
-  border-radius: 10px;
-  transition:all 0.2s;
-  align-items: left;
-}
-#skills li:hover{
-  color: #00F0FF;
-  border: 1px solid #00F0FF;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: 0.2s;
 }
 
-/*----------------------------Bouton et block de la catégorie projet----------------------------*/
-.exp-arrow {
-  background: #23242d;
-  border: 2px solid #00F0FF;
-  color: #00F0FF;
-  border-radius: 50%;
-  width: 40px; height: 40px;
-  font-size: 1.5rem;
-  cursor: pointer;
+.skills-list li:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* --- 7. Slider Projets --- */
+.slider-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: background .2s, color .2s;
-  flex: 0 0 40px;
-}
-.exp-arrow:hover {
-  background: #00F0FF;
-  color: #fff;
+  gap: 15px;
 }
 
 .exp-slider {
   overflow-x: auto;
   scroll-behavior: smooth;
-  flex: 1 1 auto;
-  margin: 0 8px;
-  scrollbar-width: none;
+  scrollbar-width: none; /* Firefox */
+  padding: 10px 0;
 }
-.exp-slider::-webkit-scrollbar {
-  display: none;
-}
+.exp-slider::-webkit-scrollbar { display: none; }
 
 .exp-grid {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
-.projet {
-  flex: 0 0 340px;
-  background: #181818;
-  border: 2px solid #23242d;
-  border-radius: 10px;
-  padding: 24px 30px;
-  min-width: 300px;
-  color: #fff;
-  transition: border .2s;
-}
-.projet ul{
-  list-style: none;
+.projet-card {
+  flex: 0 0 300px; /* Largeur fixe relative */
   display: flex;
+  flex-direction: column;
 }
-.block_projets {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+
+.projet-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-5px);
 }
-.projet h3 {
+
+.projet-card h3 {
+  color: var(--accent-color);
+  margin-top: 0;
+}
+
+.projet-card .date {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
   margin-bottom: 10px;
-  color: #00F0FF;
-  font-family: sans-serif;
-  font-size: 200%;
-}
-.projet p {
-  color: #ccc;
-  margin: 8px 0 0 0;
+  font-style: italic;
 }
 
-.projet:hover{
-    border: 2px solid #00F0FF;
+.projet-card .tags {
+  margin-top: auto;
+  padding-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* Block des outils */
-.projet li{
-  padding: 0px 7px;
-  background-color: #181818;
-  text-decoration: none;
-  display: inline-block;
-  list-style: none;
-  width: fit-content;
-  border: 1px solid #23242d;
-  border-radius: 10px;
-  transition:all 0.2s;
-  align-items: left;
-} 
-.projet li:hover {
-  transform: scale(1.1);
-  color: #00F0FF;
+.projet-card .tags span {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  background: rgba(128, 128, 128, 0.1);
+  border-radius: 4px;
 }
 
-/*Bloc de contacts*/
-.contacts {
+.exp-arrow {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+.exp-arrow:hover {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+/* --- 8. Contact --- */
+.contacts-grid {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 32px;
-  margin: 30px 0;
+  gap: 20px;
+  flex-wrap: wrap;
 }
-#contact h1, #projet h1{
-  text-align: center;
-}
-#contact p{
-  text-align: center;
-  font-size: 130%;
-}
-.block_contact {
+
+.contact-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #181818;
-  border-radius: 10px;
-  padding: 18px 34px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.18em;
-  font-weight: 500;
-  min-width: 120px;
-  min-height: 90px;
-  box-shadow: 0 3px 8px #0004;
-  border: 1px solid #181818;  
+  min-width: 140px;
+  gap: 10px;
+  font-size: 1.2rem;
 }
-.block_contact svg {
-  margin-bottom: 8px;
+
+.contact-card i {
+  font-size: 2rem;
+  color: var(--accent-color);
 }
-.block_contact:hover{
-  border: 1px solid #00F0FF;  
+
+.contact-card:hover {
+  border-color: var(--accent-color);
+  background-color: rgba(0, 188, 212, 0.05); /* Légère teinte au survol */
+}
+
+footer {
+  text-align: center;
+  padding: 50px 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* --- 9. Responsive (Mobile) --- */
+@media (max-width: 768px) {
+  header h1 { font-size: 2.5rem; }
+  
+  .menu-toggle { display: block; }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-height);
+    right: -100%; /* Caché par défaut */
+    width: 100%;
+    height: calc(100vh - var(--nav-height));
+    background-color: var(--bg-nav);
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    transition: 0.3s ease-in-out;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+  
+  .nav-links a {
+    font-size: 1.5rem;
+  }
+
+  .slider-container {
+    position: relative;
+  }
+  
+  /* Cacher les flèches sur mobile (le swipe tactile suffit) */
+  .exp-arrow { display: none; }
+  
+  .projet-card {
+    flex: 0 0 85vw; /* Carte prend presque tout l'écran */
+  }
 }
