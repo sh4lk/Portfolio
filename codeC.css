@@ -1,38 +1,28 @@
-/* =========================================
-   1. VARIABLES & THÈMES
-   ========================================= */
 :root {
-  /* --- THÈME CLAIR (Par défaut - Futuriste Glacial) --- */
-  --bg-body: #F0F5F9;           /* Gris/Bleu très pâle */
-  --bg-card: #FFFFFF;           /* Blanc pur */
-  --bg-nav: rgba(240, 245, 249, 0.90); /* Semi-transparent */
-  --text-main: #181818;         /* Anthracite */
-  --text-secondary: #546e7a;    /* Gris bleuté */
-  --accent-color: #00bcd4;      /* Cyan Électrique */
-  --border-color: #cfd8dc;      /* Gris clair */
+  --bg-body: #F0F5F9;
+  --bg-card: #FFFFFF;
+  --bg-nav: rgba(240, 245, 249, 0.90);
+  --text-main: #181818;
+  --text-secondary: #546e7a;
+  --accent-color: #00bcd4;
+  --border-color: #cfd8dc;
   --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-  
-  /* --- DIMENSIONS --- */
   --nav-height: 70px;
   --border-radius: 12px;
   --container-width: 1100px;
 }
 
-/* --- THÈME SOMBRE (Activé via JS) --- */
 body.dark-mode {
-  --bg-body: #050505;           /* Noir Profond */
-  --bg-card: #121212;           /* Gris anthracite très sombre */
+  --bg-body: #050505;
+  --bg-card: #121212;
   --bg-nav: rgba(5, 5, 5, 0.90);
-  --text-main: #ffffff;         /* Blanc */
-  --text-secondary: #b0bec5;    /* Gris clair */
-  --accent-color: #D500F9;      /* VIOLET NÉON (Cyberpunk) */
-  --border-color: #333333;      /* Gris foncé */
-  --shadow: 0 10px 40px -10px rgba(213, 0, 249, 0.15); /* Lueur violette */
+  --text-main: #ffffff;
+  --text-secondary: #b0bec5;
+  --accent-color: #cfd8dc; 
+  --border-color: #333333;
+  --shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.1); 
 }
 
-/* =========================================
-   2. RESET & BASE
-   ========================================= */
 * {
   box-sizing: border-box;
 }
@@ -49,7 +39,7 @@ body {
   margin: 0;
   padding-top: var(--nav-height);
   transition: background-color 0.3s ease, color 0.3s ease;
-  overflow-x: hidden; /* Empêche le scroll horizontal indésirable */
+  overflow-x: hidden;
   line-height: 1.6;
 }
 
@@ -57,9 +47,6 @@ ul { list-style: none; padding: 0; margin: 0; }
 a { text-decoration: none; color: inherit; transition: 0.2s; }
 button { font-family: inherit; }
 
-/* =========================================
-   3. NAVIGATION
-   ========================================= */
 nav {
   position: fixed;
   top: 0;
@@ -68,7 +55,7 @@ nav {
   background-color: var(--bg-nav);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  backdrop-filter: blur(10px); /* Effet verre dépoli */
+  backdrop-filter: blur(10px);
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -82,7 +69,6 @@ nav {
   height: 100%;
 }
 
-/* Pseudo / Logo */
 #pseudo {
   font-family: 'Courier New', monospace;
   font-size: 1.4rem;
@@ -91,7 +77,6 @@ nav {
   letter-spacing: -1px;
 }
 
-/* Liens Desktop */
 .nav-links {
   display: flex;
   align-items: center;
@@ -111,7 +96,6 @@ nav {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-/* Bouton Thème (Lune/Soleil) */
 #theme-toggle {
   background: transparent;
   border: 1px solid var(--border-color);
@@ -133,7 +117,6 @@ nav {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-/* Menu Burger (Caché sur Desktop) */
 .menu-toggle {
   display: none;
   background: none;
@@ -144,9 +127,6 @@ nav {
   padding: 5px;
 }
 
-/* =========================================
-   4. BARRE DE PROGRESSION
-   ========================================= */
 #progress-bar {
   position: fixed;
   top: 0;
@@ -159,9 +139,6 @@ nav {
   transition: width 0.1s;
 }
 
-/* =========================================
-   5. HEADER (ACCUEIL)
-   ========================================= */
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
@@ -169,7 +146,7 @@ nav {
 }
 
 header {
-  min-height: 85vh; /* Prend presque tout l'écran */
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -178,7 +155,6 @@ header {
 }
 
 header h1 {
-  /* --- LE TEXTE MASSIF (Responsive) --- */
   font-size: clamp(3.5rem, 13vw, 9rem); 
   font-weight: 800;
   line-height: 1.1;
@@ -194,17 +170,12 @@ header .subtitle {
   margin: 0;
   max-width: 800px;
 }
-
-/* Mot en couleur (cybersécurité) */
 .highlight {
   color: var(--accent-color);
   font-weight: 600;
   text-shadow: 0 0 20px rgba(var(--accent-color), 0.3);
 }
 
-/* =========================================
-   6. SECTIONS GÉNÉRALES
-   ========================================= */
 section {
   padding: 100px 0;
 }
@@ -228,7 +199,6 @@ h2::before {
   box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* Carte simple (À propos) */
 .card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -238,9 +208,6 @@ h2::before {
   font-size: 1.1rem;
 }
 
-/* =========================================
-   7. COMPÉTENCES (SKILLS)
-   ========================================= */
 .skills-list {
   display: flex;
   flex-wrap: wrap;
@@ -252,7 +219,7 @@ h2::before {
   border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 12px 24px;
-  border-radius: 50px; /* Forme de pilule */
+  border-radius: 50px;
   font-weight: 500;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -266,9 +233,6 @@ h2::before {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* =========================================
-   8. PROJETS (SLIDER)
-   ========================================= */
 .slider-container {
   display: flex;
   align-items: center;
@@ -279,11 +243,11 @@ h2::before {
 .exp-slider {
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 20px 5px; /* Espace pour l'ombre */
-  scrollbar-width: none; /* Firefox */
+  padding: 20px 5px;
+  scrollbar-width: none;
   width: 100%;
 }
-.exp-slider::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+.exp-slider::-webkit-scrollbar { display: none; }
 
 .exp-grid {
   display: flex;
@@ -291,7 +255,7 @@ h2::before {
 }
 
 .projet-card {
-  flex: 0 0 320px; /* Largeur fixe des cartes */
+  flex: 0 0 320px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
@@ -324,10 +288,9 @@ h2::before {
   color: var(--text-main);
   font-size: 0.95rem;
   margin-bottom: 20px;
-  flex-grow: 1; /* Pousse les tags vers le bas */
+  flex-grow: 1;
 }
 
-/* Tags dans les projets */
 .projet-card .tags {
   display: flex;
   flex-wrap: wrap;
@@ -338,13 +301,13 @@ h2::before {
   font-size: 0.75rem;
   font-family: monospace;
   padding: 4px 8px;
-  background: rgba(128, 128, 128, 0.1); /* Gris transparent */
+  background: rgba(128, 128, 128, 0.1);
   color: var(--text-secondary);
   border-radius: 4px;
   border: 1px solid transparent;
 }
 
-/* Flèches du slider */
+
 .exp-arrow {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -366,9 +329,6 @@ h2::before {
   background: rgba(128, 128, 128, 0.05);
 }
 
-/* =========================================
-   9. CONTACT & FOOTER
-   ========================================= */
 .contacts-grid {
   display: flex;
   justify-content: center;
@@ -420,20 +380,15 @@ footer {
   font-size: 0.9rem;
 }
 
-/* =========================================
-   10. RESPONSIVE (MOBILE)
-   ========================================= */
 @media (max-width: 768px) {
-  
-  /* Navigation Mobile */
   .menu-toggle {
-    display: block; /* Affiche le burger */
+    display: block;
   }
 
   .nav-links {
     position: fixed;
     top: var(--nav-height);
-    right: -100%; /* Caché hors écran */
+    right: -100%;
     width: 100%;
     height: calc(100vh - var(--nav-height));
     background-color: var(--bg-nav);
@@ -447,7 +402,7 @@ footer {
   }
 
   .nav-links.active {
-    right: 0; /* Menu ouvert */
+    right: 0;
   }
 
   .nav-links a {
@@ -457,23 +412,21 @@ footer {
     padding: 15px;
   }
   
-  /* Ajustement Slider sur Mobile */
   .exp-arrow {
-    display: none; /* Cache les flèches, on swipe */
+    display: none;
   }
   
   .projet-card {
-    flex: 0 0 85vw; /* La carte prend 85% de la largeur écran */
+    flex: 0 0 85vw;
   }
 
-  /* Contact empilé */
   .contacts-grid {
     gap: 15px;
   }
   
   .contact-card {
-    width: 100%; /* Boutons pleine largeur */
-    flex-direction: row; /* Icône à gauche, texte à droite */
+    width: 100%;
+    flex-direction: row;
     padding: 20px;
   }
   

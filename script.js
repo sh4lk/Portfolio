@@ -1,4 +1,3 @@
-// --- 1. Barre de Progression ---
 window.addEventListener('scroll', function() {
   var scrollTop = window.scrollY;
   var docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -8,7 +7,6 @@ window.addEventListener('scroll', function() {
 
 document.addEventListener("DOMContentLoaded", function() {
   
-  // --- 2. Slider Projets ---
   const leftBtn = document.querySelector('.exp-arrow.left');
   const rightBtn = document.querySelector('.exp-arrow.right');
   const slider = document.querySelector('.exp-slider');
@@ -23,15 +21,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // --- 3. Gestion du Thème (Dark/Light) ---
   const themeToggleBtn = document.getElementById('theme-toggle');
   const themeIcon = themeToggleBtn.querySelector('i');
   const body = document.body;
 
-  // Vérifier si un thème est sauvegardé dans le navigateur
   const savedTheme = localStorage.getItem('theme');
   
-  // Appliquer le thème sauvegardé
   if (savedTheme === 'dark') {
     body.classList.add('dark-mode');
     themeIcon.classList.replace('fa-moon', 'fa-sun');
@@ -40,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
   themeToggleBtn.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     
-    // Changer l'icône et sauvegarder la préférence
     if (body.classList.contains('dark-mode')) {
       themeIcon.classList.replace('fa-moon', 'fa-sun');
       localStorage.setItem('theme', 'dark');
@@ -50,14 +44,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // --- 4. Menu Burger (Mobile) ---
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   const links = document.querySelectorAll('.nav-links a');
 
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
-    // Change l'icône du burger en croix
     const icon = menuToggle.querySelector('i');
     if (navLinks.classList.contains('active')) {
       icon.classList.replace('fa-bars', 'fa-times');
@@ -66,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // Fermer le menu quand on clique sur un lien
   links.forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('active');
