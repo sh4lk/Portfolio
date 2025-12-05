@@ -208,13 +208,13 @@ h2::before {
   font-size: 1.1rem;
 }
 
-.skills-list {
+.skills-list, .certif-list{
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
 
-.skills-list li {
+.skills-list li, .certif-list li {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-main);
@@ -226,7 +226,7 @@ h2::before {
   cursor: default;
 }
 
-.skills-list li:hover {
+.skills-list li:hover, .certif-list li:hover{
   border-color: var(--accent-color);
   color: var(--accent-color);
   transform: translateY(-3px);
