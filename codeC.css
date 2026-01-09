@@ -330,11 +330,21 @@ h2::before {
 }
 
 .contacts-grid {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes de taille égale */
+  grid-template-rows: auto auto; /* 2 lignes */
+  gap: 20px;
+  max-width: 600px;
+  margin: 40px auto 0;
+}
+
+/* Le rectangle Email prend 2 colonnes (toute la largeur) en première ligne */
+.contact-wide {
+  grid-column: 1 / -1; /* Prend toute la largeur */
+  grid-row: 1; /* Première ligne */
+  flex-direction: column !important; /* Icône au-dessus du texte */
+  padding: 25px 30px;
+  gap: 10px;
 }
 
 .contact-card {
@@ -346,7 +356,6 @@ h2::before {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   padding: 30px;
-  min-width: 160px;
   gap: 15px;
   transition: 0.3s;
 }
@@ -380,6 +389,7 @@ footer {
   font-size: 0.9rem;
 }
 
+/* --- VERSION MOBILE (LIGNES DE CODE POUR PETITS ÉCRANS) --- */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -420,12 +430,18 @@ footer {
     flex: 0 0 85vw;
   }
 
+  /* MODIFICATION DE LA GRILLE POUR MOBILE */
+  /* Ici on force tout sur une seule colonne */
   .contacts-grid {
-    gap: 15px;
+    grid-template-columns: 1fr; 
+    max-width: 100%;
+  }
+  
+  .contact-wide {
+    grid-column: span 1; /* Le rectangle ne prend plus qu'une colonne */
   }
   
   .contact-card {
-    width: 100%;
     flex-direction: row;
     padding: 20px;
   }
