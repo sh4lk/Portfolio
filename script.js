@@ -3,9 +3,39 @@ window.addEventListener('scroll', function() {
   var docHeight = document.documentElement.scrollHeight - window.innerHeight;
   var scrolled = (scrollTop / docHeight) * 100;
   document.getElementById('progress-bar').style.width = scrolled + '%';
+  
+  // --- BOUTON RETOUR EN HAUT ---
+  const backToTop = document.getElementById('back-to-top');
+  if (scrollTop > 300) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+
+  // --- PAGE LOADER ---
+  const loader = document.getElementById('page-loader');
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, 800);
+  });
+  // Fallback si load déjà passé
+  if (document.readyState === 'complete') {
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, 800);
+  }
+
+  // --- BOUTON RETOUR EN HAUT ---
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
   
   // --- EFFET TYPING ---
   const typingText = document.getElementById('typing-text');
@@ -100,11 +130,29 @@ document.addEventListener("DOMContentLoaded", function() {
   const body = document.body;
 
   const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
-  if (savedTheme === 'dark') {
+  // Appliquer le thème: priorité au choix sauvegardé, sinon préférence système
+  if (savedTheme === 'dark' || (savedTheme === null && prefersDark)) {
     body.classList.add('dark-mode');
     themeIcon.classList.replace('fa-moon', 'fa-sun');
+  } else if (savedTheme === 'light') {
+    body.classList.remove('dark-mode');
+    themeIcon.classList.replace('fa-sun', 'fa-moon');
   }
+
+  // Écouter les changements de préférence système
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (localStorage.getItem('theme') === null) {
+      if (e.matches) {
+        body.classList.add('dark-mode');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        body.classList.remove('dark-mode');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      }
+    }
+  });
 
   themeToggleBtn.addEventListener('click', () => {
     body.classList.toggle('dark-mode');

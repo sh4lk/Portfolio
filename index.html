@@ -28,6 +28,19 @@
 </head>
 <body>
   
+  <!-- Loader de page -->
+  <div id="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <span class="loader-text">[shalk]</span>
+    </div>
+  </div>
+
+  <!-- Bouton retour en haut -->
+  <button id="back-to-top" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <div id="progress-bar"></div>
 
   <nav>
@@ -90,81 +103,92 @@
       </section>
       <section id="projet" class="projets fade-in">
         <h2>Mes projets</h2>
-        <div class="slider-container">
-          <button class="exp-arrow left" aria-label="Précédent">&#8592;</button>
-          
-          <div class="exp-slider">
-            <div class="exp-grid">
-              <div class="projet-card">
-                <h3>Administration ISR</h3>
-                <span class="date">13 octobre - 24 octobre 2025</span>
-                <p>Mise en place d'un réseau avec règles de filtrage firewall.</p>
-                <div class="tags">
-                  <span>Stormshield</span>
-                  <span>DNS</span>
-                  <span>DHCP</span>
-                  <span>Ubuntu</span>
-                </div>
-              </div>
-
-              <div class="projet-card">
-                <h3>Sécurisation ISR</h3>
-                <span class="date">27 octobre - 6 novembre 2025</span>
-                <p>Réseau sécurisé, implémentation DMZ et segmentation VLAN.</p>
-                <div class="tags">
-                  <span>GNS3</span>
-                  <span>Squid</span>
-                  <span>PfSense</span>
-                </div>
-              </div>
-
-              <div class="projet-card">
-                <h3>Serveur maison</h3>
-                <span class="date">novembre 2025</span>
-                <p>Création et configuration d'un serveur maison.</p>
-                <div class="tags">
-                  <span>Ubuntu server</span>
-                  <span>Coolify</span>
-                  <span>Tailscale</span>
-                </div>
-              </div>
-
-              <div class="projet-card">
-                <h3>Hébergement site</h3>
-                <span class="date">novembre 2025</span>
-                <p>Hébergement d'un site sur mon serveur maison.</p>
-                <div class="tags">
-                  <span>Nginx</span>
-                  <span>Clouflared</span>
-                  <span>Ovh</span>
-                </div>
-              </div>
-
-              <div class="projet-card">
-                <h3>Site web sécurisé</h3>
-                <span class="date">24 novembre - 5 décembre 2025</span>
-                <p>TalentHub, site web sécurisé pour la recherche d'emploi.</p>
-                <div class="tags">
-                  <span>HTML5</span>
-                  <span>CSS</span>
-                  <span>PHP</span>
-                  <span>JS</span>
-                  <span>MySQL</span>
-                </div>
-              </div>
-              <div class="projet-card">
-                <h3>Application sécurisée</h3>
-                <span class="date">8 décembre - 8 janvier 2026</span>
-                <p>GestStock, application sécurisée pour la gestion de stock.</p>
-                <div class="tags">
-                  <span>python</span>
-                  <span>CSV</span>
-                </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Oct 2025</div>
+            <div class="timeline-content">
+              <h3>Administration ISR</h3>
+              <span class="date">13 octobre - 24 octobre 2025</span>
+              <p>Mise en place d'un réseau avec règles de filtrage firewall.</p>
+              <div class="tags">
+                <span>Stormshield</span>
+                <span>DNS</span>
+                <span>DHCP</span>
+                <span>Ubuntu</span>
               </div>
             </div>
           </div>
 
-          <button class="exp-arrow right" aria-label="Suivant">&#8594;</button>
+          <div class="timeline-item">
+            <div class="timeline-date">Nov 2025</div>
+            <div class="timeline-content">
+              <h3>Sécurisation ISR</h3>
+              <span class="date">27 octobre - 6 novembre 2025</span>
+              <p>Réseau sécurisé, implémentation DMZ et segmentation VLAN.</p>
+              <div class="tags">
+                <span>GNS3</span>
+                <span>Squid</span>
+                <span>PfSense</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Nov 2025</div>
+            <div class="timeline-content">
+              <h3>Serveur maison</h3>
+              <span class="date">novembre 2025</span>
+              <p>Création et configuration d'un serveur maison.</p>
+              <div class="tags">
+                <span>Ubuntu server</span>
+                <span>Coolify</span>
+                <span>Tailscale</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Nov 2025</div>
+            <div class="timeline-content">
+              <h3>Hébergement site</h3>
+              <span class="date">novembre 2025</span>
+              <p>Hébergement d'un site sur mon serveur maison.</p>
+              <div class="tags">
+                <span>Nginx</span>
+                <span>Clouflared</span>
+                <span>Ovh</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Déc 2025</div>
+            <div class="timeline-content">
+              <h3>Site web sécurisé</h3>
+              <span class="date">24 novembre - 5 décembre 2025</span>
+              <p>TalentHub, site web sécurisé pour la recherche d'emploi.</p>
+              <div class="tags">
+                <span>HTML5</span>
+                <span>CSS</span>
+                <span>PHP</span>
+                <span>JS</span>
+                <span>MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Jan 2026</div>
+            <div class="timeline-content">
+              <h3>Application sécurisée</h3>
+              <span class="date">8 décembre - 8 janvier 2026</span>
+              <p>GestStock, application sécurisée pour la gestion de stock.</p>
+              <div class="tags">
+                <span>python</span>
+                <span>CSV</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
