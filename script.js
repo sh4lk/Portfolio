@@ -7,6 +7,80 @@ window.addEventListener('scroll', function() {
 
 document.addEventListener("DOMContentLoaded", function() {
   
+  // --- EFFET TYPING ---
+  const typingText = document.getElementById('typing-text');
+  const words = ['cybersécurité', 'pentesting', 'CTF', 'réseaux sécurisés'];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typeSpeed = 100;
+
+  function type() {
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+      typingText.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+      typeSpeed = 50;
+    } else {
+      typingText.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+      typeSpeed = 100;
+    }
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      isDeleting = true;
+      typeSpeed = 2000; // Pause avant de supprimer
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      typeSpeed = 500; // Pause avant le prochain mot
+    }
+
+    setTimeout(type, typeSpeed);
+  }
+
+  if (typingText) {
+    type();
+  }
+
+  // --- ANIMATIONS FADE-IN AU SCROLL ---
+  const fadeElements = document.querySelectorAll('.fade-in');
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  fadeElements.forEach(el => fadeObserver.observe(el));
+
+  // --- FORMULAIRE DE CONTACT ---
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Créer le lien mailto avec les données du formulaire
+      const mailtoLink = `mailto:sh4lk.profesional@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+      
+      window.location.href = mailtoLink;
+    });
+  }
+
   const leftBtn = document.querySelector('.exp-arrow.left');
   const rightBtn = document.querySelector('.exp-arrow.right');
   const slider = document.querySelector('.exp-slider');

@@ -3,7 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Matéo A.</title>
+  <title>Portfolio - Matéo A. | Étudiant en Cybersécurité</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Portfolio de Matéo A., étudiant passionné en cybersécurité à la Guardia Cybersecurity School. Spécialisé en CTF, analyse de vulnérabilités et réseaux sécurisés.">
+  <meta name="keywords" content="cybersécurité, portfolio, étudiant, CTF, RootMe, pentesting, sécurité informatique, Guardia">
+  <meta name="author" content="Matéo A.">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Réseaux sociaux -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portfolio - Matéo A. | Cybersécurité">
+  <meta property="og:description" content="Étudiant passionné en cybersécurité, spécialisé en CTF et analyse de vulnérabilités.">
+  <meta property="og:image" content="images/icon.png">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portfolio - Matéo A.">
+  <meta name="twitter:description" content="Étudiant passionné en cybersécurité, spécialisé en CTF et analyse de vulnérabilités.">
+  
   <link rel="stylesheet" href="codeC.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" type="image/png" href="images/icon.png" />
@@ -38,11 +56,14 @@
   <div class="container">
     <header>
       <h1>Matéo A.</h1>
-      <p class="subtitle">Passionné & étudiant en <span class="highlight">cybersécurité</span></p>
+      <p class="subtitle">Passionné & étudiant en <span class="highlight typing" id="typing-text"></span><span class="cursor">|</span></p>
+      <a href="CV_Mateo_A.pdf" download class="btn-cv">
+        <i class="fas fa-download"></i> Télécharger mon CV
+      </a>
     </header>
 
     <main>
-      <section id="about">
+      <section id="about" class="fade-in">
         <h2>À propos de moi</h2>
         <div class="card">
           <p>Passionné par la cybersécurité, la résolution de défis CTF et l’analyse de vulnérabilités. Je suis à la recherche de connaissances, d’un stage ou d’une alternance.</p>
@@ -50,7 +71,7 @@
         </div>
       </section>
 
-      <section id="skills">
+      <section id="skills" class="fade-in">
         <h2>Compétences</h2>
         <p>Technologies et environnements maîtrisés :</p>
         <ul class="skills-list">
@@ -61,13 +82,13 @@
           <li>Server maison</li>
         </ul>
       </section>
-      <section id="certif">
+      <section id="certif" class="fade-in">
         <h2>Certifications</h2>
         <p>A venir ...</p>
         <ul class="certif-list">
         </ul>
       </section>
-      <section id="projet" class="projets">
+      <section id="projet" class="projets fade-in">
         <h2>Mes projets</h2>
         <div class="slider-container">
           <button class="exp-arrow left" aria-label="Précédent">&#8592;</button>
@@ -132,8 +153,8 @@
                 </div>
               </div>
               <div class="projet-card">
-                <h3>Application sécurisé</h3>
-                <span class="date">8 décembre - 8 janvier 2025</span>
+                <h3>Application sécurisée</h3>
+                <span class="date">8 décembre - 8 janvier 2026</span>
                 <p>GestStock, application sécurisée pour la gestion de stock.</p>
                 <div class="tags">
                   <span>python</span>
@@ -147,23 +168,47 @@
         </div>
       </section>
 
-      <section id="contact">
+      <section id="contact" class="fade-in">
         <h2>Me Contacter</h2>
         <p>Une question ? Une proposition de stage ? Discutons-en !</p>
         
-        <div class="contacts-grid">
-          <a href="mailto:sh4lk.profesional@gmail.com" class="contact-card contact-wide">
-            <i class="fas fa-envelope"></i>
-            <span>sh4lk.profesional@gmail.com</span>
-          </a>
-          <a href="https://github.com/sh4lk" target="_blank" class="contact-card">
-            <i class="fab fa-github"></i>
-            <span>GitHub</span>
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" class="contact-card">
-            <i class="fab fa-linkedin"></i>
-            <span>LinkedIn</span>
-          </a>
+        <div class="contact-container">
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" placeholder="Sujet du message" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-paper-plane"></i> Envoyer
+            </button>
+          </form>
+          
+          <div class="contacts-grid">
+            <a href="mailto:sh4lk.profesional@gmail.com" class="contact-card contact-wide">
+              <i class="fas fa-envelope"></i>
+              <span>sh4lk.profesional@gmail.com</span>
+            </a>
+            <a href="https://github.com/sh4lk" target="_blank" class="contact-card">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/mateo-a-63ba61386" target="_blank" class="contact-card">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
