@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="codeC.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" type="image/png" href="images/icon.png" />
+
 </head>
 <body>
   
@@ -45,7 +46,7 @@
 
   <nav>
     <div class="nav-container">
-      <div id="pseudo">[shalk]</div>
+      <div id="pseudo" title="Ouvrir le terminal">[shalk]</div>
       
       <button class="menu-toggle" aria-label="Ouvrir le menu">
         <i class="fas fa-bars"></i>
@@ -228,7 +229,7 @@
               <i class="fab fa-github"></i>
               <span>GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/mateo-a-63ba61386" target="_blank" class="contact-card">
+            <a href="https://www.linkedin.com/in/mat%C3%A9o-a-63ba61386/" target="_blank" class="contact-card">
               <i class="fab fa-linkedin"></i>
               <span>LinkedIn</span>
             </a>
@@ -240,6 +241,27 @@
     <footer>
       <p>© 2026 Matéo A. - Portfolio Cybersécurité</p>
     </footer>
+  </div>
+
+  <!-- Terminal Mode Overlay -->
+  <div id="terminal-overlay" class="terminal-hidden">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <span class="terminal-btn red" id="terminal-close"></span>
+          <span class="terminal-btn yellow"></span>
+          <span class="terminal-btn green"></span>
+        </div>
+        <span class="terminal-title">shalk@portfolio:~</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div class="terminal-output" id="terminal-output"></div>
+        <div class="terminal-input-line">
+          <span class="terminal-prompt">shalk@portfolio:~$</span>
+          <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
