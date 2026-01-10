@@ -36,6 +36,20 @@ document.addEventListener("DOMContentLoaded", function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // --- REVEAL TEXT LETTRE PAR LETTRE ---
+  const revealText = document.querySelector('.reveal-text');
+  if (revealText) {
+    const text = revealText.getAttribute('data-text');
+    revealText.innerHTML = '';
+    text.split('').forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      span.style.animationDelay = `${0.8 + i * 0.08}s`;
+      revealText.appendChild(span);
+    });
+    revealText.style.opacity = '1';
+  }
   
   // --- EFFET TYPING ---
   const typingText = document.getElementById('typing-text');
