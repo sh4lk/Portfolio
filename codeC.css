@@ -37,7 +37,7 @@ body {
   background-color: var(--bg-body);
   color: var(--text-main);
   margin: 0;
-  padding-top: var(--nav-height);
+  padding-top: calc(var(--nav-height) + 30px);
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   line-height: 1.6;
@@ -49,23 +49,26 @@ button { font-family: inherit; }
 
 nav {
   position: fixed;
-  top: 0;
-  width: 100%;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: var(--container-width);
   height: var(--nav-height);
   background-color: var(--bg-nav);
-  border-bottom: 1px solid var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
   z-index: 1000;
-  backdrop-filter: blur(10px);
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 25px;
   height: 100%;
 }
 
