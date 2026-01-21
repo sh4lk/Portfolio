@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const message = document.getElementById('message').value;
       
       // Format plus propre pour le mailto
-      const mailtoLink = `mailto:sh4lk.profesional@gmail.com?subject=${encodeURIComponent(`[Portfolio] ${subject}`)}&body=${encodeURIComponent(`${message}\n\n---\nDe: ${name}\nEmail: ${email}`)}`;
+      const mailtoLink = `mailto:mateoadnot@gmail.com?subject=${encodeURIComponent(`[Portfolio] ${subject}`)}&body=${encodeURIComponent(`${message}\n\n---\nDe: ${name}\nEmail: ${email}`)}`;
       
       window.location.href = mailtoLink;
     });
